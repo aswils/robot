@@ -15,7 +15,7 @@
         "lint": "eslint '**/*.ts' --fix",
         "prettier": "prettier --write .",
         "chmod": "chmod u+x ./bin/src/index.js",
-        "build": "npm run lint && npm run prettier && tsc && npm run chmod"
+        "build": "npm run lint && npm run prettier && npx tsc && npm run chmod && npm link"
     },
     "author": "Alexander Steve Wilson",
     "license": "GPL-3.0-or-later",
