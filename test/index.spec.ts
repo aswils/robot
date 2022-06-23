@@ -1,6 +1,7 @@
 import assert from 'assert';
 import {
     Board,
+    extractPosition,
     parseBoardSize,
     parseRobotPosition,
     populateBoard,
@@ -53,6 +54,17 @@ describe('Robot programming', () => {
                 boardPositioned.flat().filter((pos) => pos !== null).length,
                 1
             );
+        });
+
+        it('should extract position from the board', () => {
+            const board: Board = [
+                [null, null, 'N', null, null],
+                [null, null, null, null, null],
+                [null, null, null, null, null],
+            ];
+
+            const position = extractPosition(board);
+            assert.deepEqual(position, { row: 0, column: 2, direction: 'N' });
         });
     });
 });

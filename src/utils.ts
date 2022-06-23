@@ -48,3 +48,22 @@ export const positionRobot = (board: Board, position: RobotPosition) => {
     newBoard[position.row][position.column] = position.direction;
     return newBoard;
 };
+
+export const extractPosition = (board: Board): RobotPosition => {
+    let row = 0;
+    let column = 0;
+    let direction = null;
+
+    board.forEach((boardRow, rIdx) => {
+        boardRow.forEach((boardCol, cIdx) => {
+            if (boardCol !== null) {
+                row = rIdx;
+                column = cIdx;
+                direction = boardCol;
+            }
+        });
+    });
+
+    return { row, column, direction };
+};
+
