@@ -15,8 +15,8 @@ export type Board = Array<BoardRow>;
 export type RobotPosition = {
     column: number;
     row: number;
-    direction: RobotDirection|null;
-}
+    direction: RobotDirection | null;
+};
 
 export const parseBoardSize = (size: string): BoardSize => {
     const [width, height] = size
@@ -41,4 +41,10 @@ export const parseRobotPosition = (position: string): RobotPosition => {
         row: Number.parseInt(row, 10) - 1 ?? 0,
         direction: isRobotDirection(direction) ? direction : null,
     };
+};
+
+export const positionRobot = (board: Board, position: RobotPosition) => {
+    const newBoard: Board = board.map((br) => br.map(() => null));
+    newBoard[position.row][position.column] = position.direction;
+    return newBoard;
 };

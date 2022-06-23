@@ -1,9 +1,11 @@
 import assert from 'assert';
 import {
-    BoardRow,
+    Board,
     parseBoardSize,
     parseRobotPosition,
     populateBoard,
+    positionRobot,
+    RobotPosition,
 } from '../src/utils';
 
 describe('Robot programming', () => {
@@ -29,6 +31,27 @@ describe('Robot programming', () => {
             assert.equal(
                 board.every((row) => row.length === size.width),
                 true
+            );
+        });
+
+        it('should parse the initial position', () => {
+            const position: RobotPosition = {
+                column: 2,
+                row: 1,
+                direction: 'N',
+            };
+
+            const boardStart: Board = [
+                [null, null, 'N', null, null],
+                [null, null, null, null, null],
+                [null, null, null, null, null],
+            ];
+            const boardPositioned = positionRobot(boardStart, position);
+
+            assert.equal(boardPositioned[1][2], 'N');
+            assert.equal(
+                boardPositioned.flat().filter((pos) => pos !== null).length,
+                1
             );
         });
     });
