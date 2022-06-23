@@ -22,7 +22,7 @@ describe('Robot programming', () => {
         it('should parse the initial position', () => {
             const input = '1 2 N';
             const position = parseRobotPosition(input);
-            assert.deepEqual(position, { column: 0, row: 1, direction: 'N' });
+            assert.deepEqual(position, { column: 1, row: 2, direction: 'N' });
         });
 
         it('should generate position from a move', () => {

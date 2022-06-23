@@ -41,8 +41,8 @@ export const populateBoard = (size: BoardSize) => {
 export const parseRobotPosition = (position: string): RobotPosition => {
     const [column, row, direction] = position.split(' ');
     return {
-        column: Number.parseInt(column, 10) - 1 ?? 0,
-        row: Number.parseInt(row, 10) - 1 ?? 0,
+        column: Number.parseInt(column, 10) ?? 0,
+        row: Number.parseInt(row, 10) ?? 0,
         direction: isRobotDirection(direction) ? direction : null,
     };
 };
