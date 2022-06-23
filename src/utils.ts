@@ -25,11 +25,13 @@ export const parseBoardSize = (size: string): BoardSize => {
     return { width, height };
 };
 
-export const populateBoard = (size: BoardSize, board: Array<BoardRow>) => {
+export const populateBoard = (size: BoardSize) => {
+    const board: Board = [];
     for (let i = 0; i < size.height; i++) {
         const row: BoardRow = new Array(size.width).fill(null);
         board.push(row);
     }
+    return board;
 };
 
 export const parseRobotPosition = (position: string): RobotPosition => {

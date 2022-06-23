@@ -23,8 +23,7 @@ describe('Robot programming', () => {
     describe('Board manipulation', () => {
         it('should generate an array of a given size', () => {
             const size = { width: 5, height: 3 };
-            const board: Array<BoardRow> = [];
-            populateBoard(size, board);
+            const board = populateBoard(size);
 
             assert.equal(board.length, size.height);
             assert.equal(
