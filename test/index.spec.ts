@@ -2,6 +2,8 @@ import assert from 'assert';
 import {
     Board,
     extractPosition,
+    findNewPosition,
+    MoveDirection,
     parseBoardSize,
     parseRobotPosition,
     populateBoard,
@@ -21,6 +23,23 @@ describe('Robot programming', () => {
             const input = '1 2 N';
             const position = parseRobotPosition(input);
             assert.deepEqual(position, { column: 0, row: 1, direction: 'N' });
+        });
+
+        it('should generate position from a move', () => {
+            const input: MoveDirection = 'L';
+            const board: Board = [
+                [null, null, 'N', null, null],
+                [null, null, null, null, null],
+                [null, null, null, null, null],
+            ];
+
+            const newPosition = findNewPosition(board, input);
+
+            assert.deepEqual(newPosition, {
+                row: 0,
+                column: 2,
+                direction: 'W',
+            });
         });
     });
     describe('Board manipulation', () => {

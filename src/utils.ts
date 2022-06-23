@@ -18,6 +18,8 @@ export type RobotPosition = {
     direction: RobotDirection | null;
 };
 
+export type MoveDirection = 'R' | 'L' | 'F';
+
 export const parseBoardSize = (size: string): BoardSize => {
     const [width, height] = size
         .split(' ')
@@ -67,3 +69,64 @@ export const extractPosition = (board: Board): RobotPosition => {
     return { row, column, direction };
 };
 
+export const findNewPosition = (board: Board, direction: MoveDirection) => {
+    const startPos = extractPosition(board);
+    const newPos: RobotPosition = { ...startPos };
+    if (direction === 'L') {
+        switch (startPos.direction) {
+            case 'N':
+                newPos.direction = 'W';
+                break;
+            case 'E':
+                newPos.direction = 'N';
+                break;
+            case 'S':
+                newPos.direction = 'E';
+                break;
+            case 'W':
+                newPos.direction = 'S';
+                break;
+            default:
+                break;
+        }
+    } else if (direction === 'R') {
+        switch (startPos.direction) {
+            case 'N':
+            case null:
+                newPos.direction = 'E';
+                break;
+            case 'E':
+                newPos.direction = 'S';
+                break;
+            case 'S':
+                newPos.direction = 'W';
+                break;
+            case 'W':
+                newPos.direction = 'N';
+                break;
+            default:
+                break;
+        }
+    } else if (direction === 'F') {
+        const lastRow = board.length - 1;
+        const lastCol = board[0].length - 1;
+        switch (startPos.direction) {
+            case 'N':
+                newPos.row = Math.max(startPos.row - 1, 0);
+                break;
+            case 'E':
+                newPos.column = Math.min(startPos.column + 1, lastCol);
+                break;
+            case 'S':
+                newPos.row = Math.min(startPos.row + 1, lastRow);
+                break;
+            case 'W':
+                newPos.column = Math.max(startPos.column - 1, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    return newPos;
+};
