@@ -19,6 +19,8 @@ export type RobotPosition = {
 };
 
 export type MoveDirection = 'R' | 'L' | 'F';
+export const isMoveDirection = (input: string): input is MoveDirection =>
+    !!/^(R|L|F)$/.test(input);
 
 export const parseBoardSize = (size: string): BoardSize => {
     const [width, height] = size
